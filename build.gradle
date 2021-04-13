@@ -1,0 +1,24 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+repositories
+{
+    jcenter()
+    mavenCentral()
+}
+
+configurations
+{
+    provided
+    compile.extendsFrom(provided)
+}
+
+dependencies
+{
+    compile files("libs/Project-Poseidon-1.1.5-DMV.jar")
+}
+
+jar
+{
+    from configurations.provided.asFileTree.files.collect { zipTree(it) }
+}
